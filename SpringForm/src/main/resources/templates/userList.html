@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+	<style>
+	        /* Add borders to the table and cells */
+	        table {
+	            width: 100%;
+	            border-collapse: collapse; /* Collapse borders */
+	        }
+
+	        th, td {
+	            border: 1px solid #ddd; /* Add a light gray border */
+	            padding: 8px; /* Add some padding inside cells */
+	            text-align: left;
+	        }
+
+	        /* Add a background color for the header row */
+	        th {
+	            background-color: #f2f2f2;
+	        }
+
+	        /* Add striping for alternating rows */
+	        tr:nth-child(odd) {
+	            background-color: #f9f9f9; /* Light gray for odd rows */
+	        }
+
+	        tr:nth-child(even) {
+	            background-color: #ffffff; /* White for even rows */
+	        }
+
+	        /* Add hover effect for rows */
+	        tr:hover {
+	            background-color: #f1f1f1; /* Light gray when hovered */
+	        }
+	    </style>
+</head>
+<body>
+	<h3><a href="/Form16">+ Add User</a></h3>
+    <h2>User List</h2>
+    <table>
+        <thead>
+            <tr>
+				<th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+				<th>File</th>
+				<th>Modify</th>
+				<th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+				<td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+				<td><a th:href = "${user.fileUrl}">Download</a></td>
+				<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+	<h1 th:text="${m1}"></h1>
+	<h1 th:text="${m2}"></h1>
+</body>
+</html>
